@@ -1,27 +1,10 @@
-from langchain_core.vectorstores import InMemoryVectorStore
-from langchain_core.documents import Document
 from langchain.chat_models import init_chat_model
-from dotenv import load_dotenv
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.tools import tool
-from langchain_openai import OpenAIEmbeddings
-from langchain.agents import AgentState, create_agent
-from ME135Agent.document_loader import LectureDocumentLoader
+from langchain.agents import create_agent
+from ME135Agent.vectorstore import vector_store
 
-embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
-vector_store = InMemoryVectorStore(embeddings)
 
 model = init_chat_model("gpt-4.1")
-
-loader = LectureDocumentLoader(
-    root=r"assets/ME135Lecture",
-    metadata={"course": "ME135 Transport Phenomena", "professor": "Sundar"},
-)
-docs = loader.load()
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-all_splits = text_splitter.split_documents(docs)
-
-_ = vector_store.add_documents(documents=all_splits)
 
 
 @tool(response_format="content_and_artifact")

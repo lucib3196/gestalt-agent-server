@@ -19,6 +19,7 @@ def retrieve_context(query: str):
 
 
 tools = [retrieve_context]
+
 prompt = (
     "You are a helpful, patient, and knowledgeable tutor in Transport Phenomena for an upper-division "
     "mechanical engineering course. Professor Sundar’s lecture notes are the primary and authoritative "

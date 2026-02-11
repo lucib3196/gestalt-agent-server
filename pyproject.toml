@@ -1,0 +1,19 @@
+[project]
+name = "lecture-processor"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Luciano Bermudez",email = "lucianobmecheng69@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0.0"
+dependencies = [
+    "pdf-segmentation (>=0.1.2,<0.2.0)",
+    "langchain-core (>=1.2.11,<2.0.0)",
+    "langchain-openai (>=1.1.9,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

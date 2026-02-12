@@ -3,7 +3,8 @@
   "dependencies": ["."],
   "graphs": {
     "agent_me135": "./src/ME135Agent/main.py:agent",
-    "agent_me118": "./src/ME118Agent/main.py:agent"
+    "agent_me118": "./src/ME118Agent/main.py:agent",
+    "sundar_agent": "./src/SundarAgent/main.py:agent"
   },
   "env": ".env",
   "image_distro": "wolfi"

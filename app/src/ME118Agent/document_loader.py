@@ -72,8 +72,12 @@ class LectureDocumentLoader(BaseLoader):
 
 
 if __name__ == "__main__":
+    print("Running")
     loader = LectureDocumentLoader(
         root=r"assets/ME118Lecture",
-        metadata={"course": "ME118 Mechanical Engineering Modeling and Analysis ", "professor": "Sundar"},
+        metadata={
+            "course": "ME118 Mechanical Engineering Modeling and Analysis ",
+            "professor": "Sundar",
+        },
     )
-    print(list(loader.load_and_split())[0])
+    print(loader.load_and_split()[0])

@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     loader = LectureDocumentLoader(
         lecture_key="lecture_summary",
-        root=r"assets/ME118Lecture",
+        root=r"assets/ME118Lecture/update",
         metadata={
             "course": "ME118 Mechanical Engineering Modeling and Analysis ",
             "professor": "Sundar",

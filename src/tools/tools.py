@@ -60,7 +60,7 @@ def refine_query(
     user_intent: str = "concept_review",
     queries: int = 3,
 ) -> List[str]:
-    """Refine a user request into optimized search queries for lecture retrieval."""
+    """Refine a user request into optimized search queries for lecture retrieval. After using this tool use the available search tools to look throught the database of notes"""
 
     prompt = ChatPromptTemplate.from_messages(
         [

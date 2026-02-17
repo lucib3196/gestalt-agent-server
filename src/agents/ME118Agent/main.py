@@ -6,10 +6,7 @@ from langsmith import Client
 from src.settings import get_settings
 from src.tools import refine_query
 from src.utils import extract_langsmith_prompt
-
-
 from src.agents.ME118Agent.vectorstore import vector_store
-
 
 settings = get_settings()
 client = Client()
@@ -18,7 +15,6 @@ prompt = extract_langsmith_prompt(
         "me118_tutor_prompt",
     )
 )
-
 model = init_chat_model(
     model=settings.model,
     model_provider="google_genai",

@@ -20,15 +20,12 @@ dependencies = [
     "langchain-google-genai (>=4.2.0,<5.0.0)",
 ]
 
-
 [project.optional-dependencies]
 dev = ["mypy>=1.11.1", "ruff>=0.6.1"]
 
 [build-system]
 requires = ["setuptools>=73.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
-
-
 
 
 [tool.setuptools.package-data]

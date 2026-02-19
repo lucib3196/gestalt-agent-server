@@ -10,6 +10,7 @@ from src.agents.ME118Agent.vectorstore import vector_store
 
 settings = get_settings()
 client = Client()
+
 prompt = extract_langsmith_prompt(
     client.pull_prompt(
         "me118_tutor_prompt",

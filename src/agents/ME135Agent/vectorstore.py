@@ -3,7 +3,7 @@ from langchain_astradb import AstraDBVectorStore
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.settings import get_settings
-from document_loaders.lecture_document_loader import LectureDocumentLoader
+from src.document_loaders.lecture_document_loader import LectureDocumentLoader
 
 settings = get_settings()
 embeddings = GoogleGenerativeAIEmbeddings(model=settings.embedding_model)

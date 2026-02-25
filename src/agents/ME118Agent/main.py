@@ -21,7 +21,6 @@ model = init_chat_model(
     model_provider="google_genai",
 )
 
-
 @tool(response_format="content_and_artifact")
 def retrieve_me118_lecture(query: str):
     """Retrieve information to help answer a query. Use the tool refine query before calling this tool"""

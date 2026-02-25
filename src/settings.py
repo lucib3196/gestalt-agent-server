@@ -12,9 +12,9 @@ class Settings(BaseSettings):
 
 @lru_cache
 def get_settings() -> Settings:
-    if not Settings().model: # type: ignore
+    if not Settings().model:  # type: ignore
         raise ValueError("Failed to load AI model. Must be set in ENV")
-    return Settings() # type: ignore
+    return Settings()  # type: ignore
 
 
 if __name__ == "__main__":

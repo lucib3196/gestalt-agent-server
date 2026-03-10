@@ -7,7 +7,7 @@ from typing import Literal
 
 load_dotenv()
 
-ROOT_PATH = Path(__file__).parents[2]
+ROOT_PATH = Path(__file__).parents[2].as_posix()
 
 
 class Settings(BaseSettings):
@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     FIREBASE_CRED: str | None = None
     STORAGE_EMULATOR_HOST: str | None = None
     STORAGE_BUCKET: str | None = None
+
+    PROJECT_ROOT: str = ROOT_PATH
 
     @model_validator(mode="after")
     def validate_required_runtime_fields(self):

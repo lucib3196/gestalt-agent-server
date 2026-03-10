@@ -1,13 +1,7 @@
 from pathlib import Path
 import json
-from lecture_processor.full_extraction.graph import State
 import asyncio
-from lecture_processor.models import (
-    Derivation,
-    ConceptualQuestion,
-    LectureAnalysis,
-    ExtractedQuestion,
-)
+from . import Derivation, LectureAnalysis, ExtractedQuestion, ConceptualQuestion
 import base64
 
 
@@ -86,7 +80,7 @@ async def postprocess_lecture_output(
 
 
 async def main():
-    folder_path = Path(r"data\me118_update\outputs").resolve()
+    folder_path = Path(r"data\me118\output").resolve()
 
     filename = "output.json"
     tasks = []

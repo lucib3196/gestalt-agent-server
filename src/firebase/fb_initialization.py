@@ -3,7 +3,7 @@ import json
 from firebase_admin import credentials
 import firebase_admin
 from functools import lru_cache
-from .settings import get_settings
+from src.core.settings import get_settings
 
 app_settings = get_settings()
 
@@ -13,7 +13,7 @@ def initialize_firebase_app():
     if not app_settings.FIREBASE_CRED:
         raise ValueError("Firebase Credentials Not Found")
     try:
-        if app_settings.MODE == "production":
+        if app_settings.mode == "production":
             cred = json.loads(app_settings.FIREBASE_CRED)
         else:
             cred = (

@@ -1,6 +1,6 @@
 from typing import List
 from pydantic import BaseModel, Field
-from lecture_processor.models.extraction import Option, PageRange
+from src.lecture_processor.models import Option, PageRange
 
 
 class ConceptualQuestion(BaseModel):

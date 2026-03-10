@@ -15,7 +15,7 @@ from pdf_segmentation.utils import (
 )
 
 from .model import Derivation
-from lecture_processor.utils import extract_langsmith_prompt
+from src.utils import extract_langsmith_prompt
 
 
 client = Client()

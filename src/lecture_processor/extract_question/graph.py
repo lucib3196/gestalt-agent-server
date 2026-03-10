@@ -7,7 +7,7 @@ from langsmith import Client
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, START, END
 
-from lecture_processor.utils import extract_langsmith_prompt
+from src.utils import extract_langsmith_prompt
 from .model import ExtractedQuestion
 from pdf_invoke import MultiModalLLM
 from pdf_segmentation.utils import (

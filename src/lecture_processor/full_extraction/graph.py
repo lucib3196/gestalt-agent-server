@@ -38,7 +38,21 @@ from lecture_processor.lecture_analysis.graph import (
 client = Client()
 dotenv.load_dotenv()
 
+section_extraction_prompt = """
+Extract section chunks from each page of this lecture PDF.
 
+Focus only on content relevant to:
+1) derivations
+2) questions
+
+For every extracted chunk:
+- Assign `type` as either `derivation` or `question`.
+- Include a concise `name`.
+- Include a concise `description`.
+- Preserve enough surrounding context for the chunk to stand alone.
+
+Do not extract unrelated narrative, administrative text, or examples that are not part of a derivation or question.
+"""
 class LectureSection(Section, BaseModel):
     name: str
     description: str
@@ -62,9 +76,7 @@ class State(BaseModel):
 
 llm = init_chat_model(model="gemini-2.5-flash", model_provider="google_genai")
 
-section_extraction_prompt = Path(
-    r"lecture_processor\full_extraction\prompt.txt"
-).read_text()
+
 
 
 async def extract_sections(state: State):

@@ -972,6 +972,25 @@ async-rest = ["google-auth[aiohttp] (>=2.35.0,<3.0.0)"]
 grpc = ["grpcio (>=1.33.2,<2.0.0)", "grpcio (>=1.49.1,<2.0.0) ; python_version >= \"3.11\"", "grpcio (>=1.75.1,<2.0.0) ; python_version >= \"3.14\"", "grpcio-status (>=1.33.2,<2.0.0)", "grpcio-status (>=1.49.1,<2.0.0) ; python_version >= \"3.11\"", "grpcio-status (>=1.75.1,<2.0.0) ; python_version >= \"3.14\""]
 
 [[package]]
+name = "google-api-python-client"
+version = "2.192.0"
+description = "Google API Client Library for Python"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "google_api_python_client-2.192.0-py3-none-any.whl", hash = "sha256:63a57d4457cd97df1d63eb89c5fda03c5a50588dcbc32c0115dd1433c08f4b62"},
+    {file = "google_api_python_client-2.192.0.tar.gz", hash = "sha256:d48cfa6078fadea788425481b007af33fe0ab6537b78f37da914fb6fc112eb27"},
+]
+
+[package.dependencies]
+google-api-core = ">=1.31.5,<2.0.dev0 || >2.3.0,<3.0.0"
+google-auth = ">=1.32.0,<2.24.0 || >2.24.0,<2.25.0 || >2.25.0,<3.0.0"
+google-auth-httplib2 = ">=0.2.0,<1.0.0"
+httplib2 = ">=0.19.0,<1.0.0"
+uritemplate = ">=3.0.1,<5"
+
+[[package]]
 name = "google-auth"
 version = "2.49.0"
 description = "Google Authentication Library"
@@ -999,6 +1018,22 @@ reauth = ["pyu2f (>=0.1.5)"]
 requests = ["requests (>=2.20.0,<3.0.0)"]
 testing = ["aiohttp (<3.10.0)", "aiohttp (>=3.6.2,<4.0.0)", "aioresponses", "flask", "freezegun", "grpcio", "oauth2client", "packaging", "pyjwt (>=2.0)", "pyopenssl (<24.3.0)", "pyopenssl (>=20.0.0)", "pytest", "pytest-asyncio", "pytest-cov", "pytest-localserver", "pyu2f (>=0.1.5)", "requests (>=2.20.0,<3.0.0)", "responses", "urllib3"]
 urllib3 = ["packaging", "urllib3"]
+
+[[package]]
+name = "google-auth-httplib2"
+version = "0.3.0"
+description = "Google Authentication Library: httplib2 transport"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "google_auth_httplib2-0.3.0-py3-none-any.whl", hash = "sha256:426167e5df066e3f5a0fc7ea18768c08e7296046594ce4c8c409c2457dd1f776"},
+    {file = "google_auth_httplib2-0.3.0.tar.gz", hash = "sha256:177898a0175252480d5ed916aeea183c2df87c1f9c26705d74ae6b951c268b0b"},
+]
+
+[package.dependencies]
+google-auth = ">=1.32.0,<3.0.0"
+httplib2 = ">=0.19.0,<1.0.0"
 
 [[package]]
 name = "google-cloud-core"
@@ -1036,6 +1071,31 @@ files = [
 google-api-core = {version = ">=1.34.1,<2.0.dev0 || >=2.11.dev0,<3.0.0", extras = ["grpc"]}
 google-auth = ">=2.14.1,<2.24.0 || >2.24.0,<2.25.0 || >2.25.0,<3.0.0"
 google-cloud-core = ">=1.4.1,<3.0.0"
+grpcio = [
+    {version = ">=1.33.2,<2.0.0"},
+    {version = ">=1.75.1,<2.0.0", markers = "python_version >= \"3.14\""},
+]
+proto-plus = [
+    {version = ">=1.22.3,<2.0.0"},
+    {version = ">=1.25.0,<2.0.0", markers = "python_version >= \"3.13\""},
+]
+protobuf = ">=3.20.2,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<7.0.0"
+
+[[package]]
+name = "google-cloud-modelarmor"
+version = "0.4.0"
+description = "Google Cloud Modelarmor API client library"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "google_cloud_modelarmor-0.4.0-py3-none-any.whl", hash = "sha256:aa701ad77dcc52e482c0c80985a7e7bcf87e669726043b1ce851c844abf8dfbf"},
+    {file = "google_cloud_modelarmor-0.4.0.tar.gz", hash = "sha256:6e07941e6ee54d28ce3933d50d0999d2dfe32b3d39b49a791e7b180237db0166"},
+]
+
+[package.dependencies]
+google-api-core = {version = ">=1.34.1,<2.0.dev0 || >=2.11.dev0,<3.0.0", extras = ["grpc"]}
+google-auth = ">=2.14.1,<2.24.0 || >2.24.0,<2.25.0 || >2.25.0,<3.0.0"
 grpcio = [
     {version = ">=1.33.2,<2.0.0"},
     {version = ">=1.75.1,<2.0.0", markers = "python_version >= \"3.14\""},
@@ -1318,7 +1378,6 @@ files = [
     {file = "grpcio-1.78.0-cp39-cp39-win_amd64.whl", hash = "sha256:5361a0630a7fdb58a6a97638ab70e1dae2893c4d08d7aba64ded28bb9e7a29df"},
     {file = "grpcio-1.78.0.tar.gz", hash = "sha256:7382b95189546f375c174f53a5fa873cef91c4b8005faa05cc5b3beea9c4f1c5"},
 ]
-markers = {main = "platform_python_implementation != \"PyPy\""}
 
 [package.dependencies]
 typing-extensions = ">=4.12,<5.0"
@@ -1349,7 +1408,6 @@ description = "Status proto mapping for gRPC"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
-markers = "platform_python_implementation != \"PyPy\""
 files = [
     {file = "grpcio_status-1.78.0-py3-none-any.whl", hash = "sha256:b492b693d4bf27b47a6c32590701724f1d3b9444b36491878fb71f6208857f34"},
     {file = "grpcio_status-1.78.0.tar.gz", hash = "sha256:a34cfd28101bfea84b5aa0f936b4b423019e9213882907166af6b3bddc59e189"},
@@ -1497,6 +1555,21 @@ asyncio = ["anyio (>=4.0,<5.0)"]
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (==1.*)"]
 trio = ["trio (>=0.22.0,<1.0)"]
+
+[[package]]
+name = "httplib2"
+version = "0.31.2"
+description = "A comprehensive HTTP client library."
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "httplib2-0.31.2-py3-none-any.whl", hash = "sha256:dbf0c2fa3862acf3c55c078ea9c0bc4481d7dc5117cae71be9514912cf9f8349"},
+    {file = "httplib2-0.31.2.tar.gz", hash = "sha256:385e0869d7397484f4eab426197a4c020b606edd43372492337c0b4010ae5d24"},
+]
+
+[package.dependencies]
+pyparsing = ">=3.1,<4"
 
 [[package]]
 name = "httpx"
@@ -2031,6 +2104,45 @@ pyyaml = ">=5.3.0,<7.0.0"
 tenacity = ">=8.1.0,<8.4.0 || >8.4.0,<10.0.0"
 typing-extensions = ">=4.7.0,<5.0.0"
 uuid-utils = ">=0.12.0,<1.0"
+
+[[package]]
+name = "langchain-google-community"
+version = "3.0.5"
+description = "An integration package connecting miscellaneous Google's products and LangChain"
+optional = false
+python-versions = "<4.0.0,>=3.10.0"
+groups = ["main"]
+files = [
+    {file = "langchain_google_community-3.0.5-py3-none-any.whl", hash = "sha256:ec16c57243a995792880e74687f383f9be42566216570ba91029f7101add1d9b"},
+    {file = "langchain_google_community-3.0.5.tar.gz", hash = "sha256:63fbfb30c9937137662d88d9db805daa455c60518abf4ad50a1f72dcef37fa14"},
+]
+
+[package.dependencies]
+google-api-core = ">=2.25.0,<3.0.0"
+google-api-python-client = ">=2.161.0,<3.0.0"
+google-cloud-core = ">=2.4.3,<3.0.0"
+google-cloud-modelarmor = ">=0.2.8,<1.0.0"
+google-cloud-storage = {version = ">=2.16.0,<4.0.0", optional = true, markers = "extra == \"gcs\""}
+grpcio = ">=1.74.0,<2.0.0"
+langchain = ">=1.1.3,<2.0.0"
+langchain-community = ">=0.4.0,<2.0.0"
+langchain-core = ">=1.2.5,<2.0.0"
+langgraph = ">=1.0.4,<2.0.0"
+
+[package.extras]
+bigquery = ["google-auth (>=2.36.0,<3.0.0)", "google-cloud-bigquery (>=3.21.0,<4.0.0)", "google-cloud-bigquery-storage (>=2.25.0,<3.0.0)", "google-cloud-core (>=2.4.3,<3.0.0)", "google-cloud-storage (>=2.16.0,<4.0.0)", "pyarrow (>=6.0.1)"]
+calendar = ["google-auth (>=2.36.0,<3.0.0)", "google-auth-oauthlib (>=1.2.0,<2.0.0)"]
+docai = ["gapic-google-longrunning (>=0.11.2,<1.0.0)", "google-cloud-contentwarehouse (>=0.7.7,<1.0.0)", "google-cloud-documentai (>=2.26.0,<3.0.0)"]
+drive = ["google-auth-httplib2 (>=0.2.0,<1.0.0)", "google-auth-oauthlib (>=1.2.0,<2.0.0)"]
+featurestore = ["db-dtypes (>=1.2.0,<2.0.0)", "google-cloud-aiplatform (>=1.56.0,<2.0.0)", "google-cloud-bigquery-storage (>=2.6.0,<3.0.0)", "pandas (>=1.0.0) ; python_version < \"3.12\"", "pandas (>=2.0.0,<3.0.0) ; python_version >= \"3.12\"", "pyarrow (>=6.0.1)", "pydantic (>=2.7.4,<3.0.0)"]
+gcs = ["google-cloud-storage (>=2.16.0,<4.0.0)"]
+gmail = ["beautifulsoup4 (>=4.12.3,<5.0.0)", "google-auth-httplib2 (>=0.2.0,<1.0.0)", "google-auth-oauthlib (>=1.2.0,<2.0.0)"]
+places = ["googlemaps (>=4.10.0,<5.0.0)"]
+speech = ["google-cloud-speech (>=2.26.0,<3.0.0)"]
+texttospeech = ["google-cloud-texttospeech (>=2.16.3,<3.0.0)"]
+translate = ["google-cloud-translate (>=3.15.3,<4.0.0)"]
+vertexaisearch = ["google-cloud-discoveryengine (>=0.11.14,<1.0.0)"]
+vision = ["google-cloud-vision (>=3.7.2,<4.0.0)"]
 
 [[package]]
 name = "langchain-google-genai"
@@ -3873,6 +3985,21 @@ files = [
 ]
 
 [[package]]
+name = "pyparsing"
+version = "3.3.2"
+description = "pyparsing - Classes and methods to define and execute parsing grammars"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "pyparsing-3.3.2-py3-none-any.whl", hash = "sha256:850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d"},
+    {file = "pyparsing-3.3.2.tar.gz", hash = "sha256:c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"},
+]
+
+[package.extras]
+diagrams = ["jinja2", "railroad-diagrams"]
+
+[[package]]
 name = "pytest"
 version = "9.0.2"
 description = "pytest: simple powerful testing with Python"
@@ -4639,6 +4766,18 @@ files = [
 typing-extensions = ">=4.12.0"
 
 [[package]]
+name = "uritemplate"
+version = "4.2.0"
+description = "Implementation of RFC 6570 URI Templates"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "uritemplate-4.2.0-py3-none-any.whl", hash = "sha256:962201ba1c4edcab02e60f9a0d3821e82dfc5d2d6662a21abd533879bdb8a686"},
+    {file = "uritemplate-4.2.0.tar.gz", hash = "sha256:480c2ed180878955863323eea31b0ede668795de182617fef9c6ca09e6ec9d0e"},
+]
+
+[[package]]
 name = "urllib3"
 version = "2.6.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -5355,4 +5494,4 @@ dev = ["mypy", "ruff"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0.0"
-content-hash = "a45848115e84c48bc489e469741c92fd86f9cd08f0bb264b59e31737b7113a97"
+content-hash = "e226ee7d7c7af39f5886c951c058c9802a7ef1ab4f705d70ae39d3fb9190edaa"

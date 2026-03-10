@@ -14,10 +14,10 @@ from pdf_segmentation.utils import (
     save_graph_visualization,
     to_serializable,
 )
-from lecture_processor.utils import extract_langsmith_prompt
+from src.utils import extract_langsmith_prompt
 
 from pdf_invoke import MultiModalLLM
-from lecture_processor.utils import extract_langsmith_prompt
+
 
 client = Client()
 llm = init_chat_model(model="gemini-2.5-flash", model_provider="google_genai")

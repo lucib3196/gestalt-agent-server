@@ -2,20 +2,30 @@ from pydantic_settings import BaseSettings
 from pydantic import model_validator
 from functools import lru_cache
 from dotenv import load_dotenv
+from pathlib import Path
+from typing import Literal
 
 load_dotenv()
+
+ROOT_PATH = Path(__file__).parents[2]
 
 
 class Settings(BaseSettings):
     model: str = "gemini-2.5-flash"
     embedding_model: str = "gemini-embedding-001"
-
+    mode: Literal["dev", "production"] = "dev"
     GOOGLE_API_KEY: str | None = None
     LANGSMITH_API_KEY: str | None = None
     LANGSMITH_PROJECT: str | None = None
 
+    # Vectordatabase
     ASTRA_DB_API_ENDPOINT: str | None = None
     ASTRA_DB_APPLICATION_TOKEN: str | None = None
+
+    # FIREBASE Initalization
+    FIREBASE_CRED: str | None = None
+    STORAGE_EMULATOR_HOST: str | None = None
+    STORAGE_BUCKET: str | None = None
 
     @model_validator(mode="after")
     def validate_required_runtime_fields(self):
@@ -25,6 +35,8 @@ class Settings(BaseSettings):
             "LANGSMITH_PROJECT",
             "ASTRA_DB_APPLICATION_TOKEN",
             "ASTRA_DB_API_ENDPOINT",
+            "FIREBASE_CRED",
+            "STORAGE_BUCKET",
         ]
         missing = []
         for field in required_fields:
@@ -32,6 +44,13 @@ class Settings(BaseSettings):
                 missing.append(field)
         if missing:
             raise RuntimeError(f"Missing required settings: {', '.join(missing)}")
+        return self
+
+    @model_validator(mode="after")
+    def validate_emulator(self):
+        if self.mode == "dev":
+            if not getattr(self, "STORAGE_EMULATOR_HOST"):
+                raise RuntimeError("FIREBASE_STORAGE_EMULATOR_HOST must be set in Dev")
         return self
 
 

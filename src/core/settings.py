@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     FIREBASE_CRED: str | None = None
     STORAGE_EMULATOR_HOST: str | None = None
     STORAGE_BUCKET: str | None = None
+    FIREBASE_AUTH_EMULATOR_HOST: str | None = None
 
     PROJECT_ROOT: str = ROOT_PATH
 
@@ -52,17 +53,22 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def validate_emulator(self):
-        if self.mode == "dev":
-            if not getattr(self, "STORAGE_EMULATOR_HOST"):
-                raise RuntimeError("FIREBASE_STORAGE_EMULATOR_HOST must be set in Dev")
-        elif self.mode == "production":
-            logger.info("Dectected Production Removing storage emulator host: ")
-            if getattr(self, "STORAGE_EMULATOR_HOST"):
-                setattr(self, "STORAGE_EMULATOR_HOST", None)
-                # Ensure we set the env val
-                os.environ.pop("STORAGE_EMULATOR_HOST", None)
+        firebase_emulators = ["STORAGE_EMULATOR_HOST", "FIREBASE_AUTH_EMULATOR_HOST"]
+        try:
+            for v in firebase_emulators:
+                if self.mode == "dev":
+                    if not getattr(self, v):
+                        raise RuntimeError(f"{v} must be set in Dev")
+                elif self.mode == "production":
+                    if getattr(self, v):
+                        setattr(self, v, None)
+                        os.environ.pop(v, None)
+                else:
+                    raise ValueError(f"Cannot determine mode {self.mode}")
 
-        return self
+            return self
+        except Exception as e:
+            raise
 
 
 @lru_cache

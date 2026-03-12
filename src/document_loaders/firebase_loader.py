@@ -2,6 +2,8 @@ import json
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict, List
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import TextSplitter
 
 from firebase.fb_initialization import initialize_firebase_app
 from firebase_admin import storage
@@ -91,6 +93,28 @@ class FirebaseLectureDocumentLoader(BaseLoader):
             )
 
         return docs
+
+    def load_and_split(
+        self, text_splitter: TextSplitter | None = None
+    ) -> List[Document]:
+        if not text_splitter:
+            text_splitter = RecursiveCharacterTextSplitter(
+                chunk_size=2000,
+                chunk_overlap=100,
+            )
+        docs = self.load()
+        chunked_docs = []
+        for doc in docs:
+            chunks = text_splitter.split_text(doc.page_content)
+            for i, chunk in enumerate(chunks):
+                chunked_docs.append(
+                    Document(
+                        id=f"{doc.id}:{i}",
+                        page_content=chunk,
+                        metadata={**doc.metadata, "parent_id": doc.id, "chunk": i},
+                    )
+                )
+        return chunked_docs
 
 
 if __name__ == "__main__":

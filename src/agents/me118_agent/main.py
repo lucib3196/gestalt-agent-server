@@ -17,7 +17,6 @@ prompt = extract_langsmith_prompt(
         "me118_tutor_prompt",
     )
 )
-print(prompt)
 
 
 model = init_chat_model(
@@ -29,7 +28,7 @@ model = init_chat_model(
 @tool(response_format="content_and_artifact")
 def retrieve_me118_lecture(query: str):
     """Retrieve information to help answer a query. Use the tool refine query before calling this tool"""
-    retrieved_docs = vector_store.similarity_search(query, k=2)
+    retrieved_docs = vector_store.similarity_search(query, k=3)
     serialized = "\n\n".join(
         (f"Source: {doc.metadata}\nContent: {doc.page_content}")
         for doc in retrieved_docs

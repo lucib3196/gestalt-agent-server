@@ -4,6 +4,8 @@ from functools import lru_cache
 from dotenv import load_dotenv
 from pathlib import Path
 from typing import Literal
+import os
+from src.core.logger import logger
 
 load_dotenv()
 
@@ -53,6 +55,13 @@ class Settings(BaseSettings):
         if self.mode == "dev":
             if not getattr(self, "STORAGE_EMULATOR_HOST"):
                 raise RuntimeError("FIREBASE_STORAGE_EMULATOR_HOST must be set in Dev")
+        elif self.mode == "production":
+            logger.info("Dectected Production Removing storage emulator host: ")
+            if getattr(self, "STORAGE_EMULATOR_HOST"):
+                setattr(self, "STORAGE_EMULATOR_HOST", None)
+                # Ensure we set the env val
+                os.environ.pop("STORAGE_EMULATOR_HOST", None)
+
         return self
 
 

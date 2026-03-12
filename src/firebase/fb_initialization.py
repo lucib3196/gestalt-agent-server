@@ -14,7 +14,11 @@ def initialize_firebase_app():
         raise ValueError("Firebase Credentials Not Found")
     try:
         if app_settings.mode == "production":
-            cred = json.loads(app_settings.FIREBASE_CRED)
+            cred = (
+                Path(app_settings.PROJECT_ROOT) / app_settings.FIREBASE_CRED
+            ).resolve()
+            if not cred.exists():
+                cred = json.loads(app_settings.FIREBASE_CRED)
         else:
             cred = (
                 Path(app_settings.PROJECT_ROOT) / app_settings.FIREBASE_CRED
